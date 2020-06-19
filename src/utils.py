@@ -7,6 +7,8 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib import colors
 
+WEB = 'www.godigital.menu'
+
 def create_QR(url, image_filename):
     """ 
     Create QR Code 
@@ -22,26 +24,50 @@ def create_QR(url, image_filename):
         border=4,
     )
     qr.add_data(url)
-    image = qr.make_image(fill_color="black", back_color="white")
+    image = qr.make_image(
+        fill_color="black", 
+        back_color="white")
 
     # Save image
     image.save(image_filename)
 
 
 def create_PDF(document_name, document_title, image_filename):
-    """ Create PDF with QR Code """
+    """ 
+    Create PDF with QR Code 
+    https://realpython.com/creating-modifying-pdf/#creating-a-pdf-file-from-scratch
+    https://www.reportlab.com/docs/reportlab-userguide.pdf
+    """
 
     # Create document 
     pdf = canvas.Canvas(document_name, pagesize=A4)
+    width, height = A4
     pdf.setTitle(document_title)
 
-    # Draw image
-    pdf.drawInlineImage(image_filename, 0, 0, 275, 275)
-    pdf.drawInlineImage(image_filename, 280, 0, 275, 275)
-    pdf.drawInlineImage(image_filename, 0, 280, 275, 275)
-    pdf.drawInlineImage(image_filename, 280, 280, 275, 275)
-    pdf.drawInlineImage(image_filename, 0, 560, 275, 275)
-    pdf.drawInlineImage(image_filename, 280, 560, 275, 275)
+    # Draw QRs
+    pdf.drawInlineImage(image_filename, 0, 0, height / 3, height / 3)
+    pdf.drawInlineImage(image_filename, height / 2.75, 0, height / 3, height / 3)
+    pdf.drawInlineImage(image_filename, 0, height / 3, height / 3, height / 3)
+    pdf.drawInlineImage(image_filename, height / 2.75, height / 3, height / 3, height / 3)
+    pdf.drawInlineImage(image_filename, 0, height * 2 / 3, height / 3, height / 3)
+    pdf.drawInlineImage(image_filename, height / 2.75, height * 2 / 3, height / 3, height / 3)
+
+    # Draw text
+    # Fonts
+    # print('Available fonts: {}'.format(pdf.getAvailableFonts()))
+    # Set font
+    pdf.setFont('Helvetica-Bold', 18)
+    # Draw blue text
+    pdf.setFillColor(colors.blue)
+    # Middle ones
+    pdf.drawCentredString(height / 1.9, width / 2, WEB)
+    pdf.drawCentredString(height / 6.2, width / 2, WEB)
+
+    # Draw Line
+    pdf.setDash(6, 3)
+    pdf.line(0, height / 3, width, height / 3) # horizontal
+    pdf.line(0, height * 2 / 3, width, height * 2 / 3) # horizontal
+    pdf.line(width / 2, 0, width / 2, height) # vertical
 
     # Save PDF!
     pdf.save()
