@@ -2,7 +2,7 @@
 import os
 import io
 import sys
-import qrcode
+from utils import create_QR, create_PDF
 from flask import Flask, jsonify, request
 
 # APP
@@ -25,12 +25,14 @@ def generate_qr():
         restaurant_name = request.headers['restaurant_name']
         url = request.headers['url']
 
-        # Make QR
-        image = qrcode.make(url)
+        # Create QR Code
+        QR_filename = os.path.join(OUTPUT_PATH, 'QR.png')
+        create_QR(url, QR_filename)
 
-        # Save image
-        filename = os.path.join(OUTPUT_PATH, 'qr.png')
-        image.save(filename)
+        # Create PDF
+        document_name = os.path.join(OUTPUT_PATH, 'QR.pdf')
+        document_title = restaurant_name
+        create_PDF(document_name, document_title, QR_filename)
 
         # Hurray!
         return jsonify(success=True)

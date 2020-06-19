@@ -6,4 +6,5 @@ RUN pip install \
     requests \
     pandas \
     qrcode \
-    Pillow
+    Pillow \
+    reportlab
