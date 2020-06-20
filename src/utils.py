@@ -12,7 +12,7 @@ from reportlab.lib import colors
 STATIC_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "static"))
 
 # Parameters
-SCISSORS_PATH = os.path.join(STATIC_PATH, 'img', 'scissors4.png')
+SCISSORS_PATH = os.path.join(STATIC_PATH, 'img', 'scissors.png')
 WEB = 'www.godigital.menu'
 
 
