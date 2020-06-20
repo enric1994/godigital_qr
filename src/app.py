@@ -17,7 +17,7 @@ OUTPUT_PATH = "/data/outputs/"
 
 @app.route('/qr', methods=['GET', 'POST'])
 def generate_qr():
-    """ Generate Menu from CSV """
+    """ Generate QR from URL """
 
     try:
 
