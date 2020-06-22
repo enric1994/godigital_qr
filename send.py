@@ -3,8 +3,8 @@ import json
 
 headers = {
     'Content-Type': 'text/plain',
-    'restaurant_name': 'Domino\'s pizza',
-    'url': 'https://www.google.com/'
+    'url': 'https://www.google.com/',
+    'output_id': '12345'
 }
 url = "http://localhost:5000/qr"
 

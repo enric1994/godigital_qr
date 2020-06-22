@@ -126,7 +126,7 @@ def create_PDF_large(document_name, document_title, image_filename):
     pdf.setTitle(document_title)
 
     # Background
-    pdf.setFillColor(colors.green)
+    pdf.setFillColorRGB(0.8,0.8,0.8)
     pdf.rect(0, 0, width, height, fill=1)
 
     # Circle
@@ -150,7 +150,7 @@ def create_PDF_large(document_name, document_title, image_filename):
     pdf.setFont('Helvetica-Bold', 16)
 
     # Text color
-    pdf.setFillColor(colors.grey)
+    pdf.setFillColor(colors.black)
 
     # Footers
     pdf.drawCentredString(height / 2.7, width / 25, FOOTER)
