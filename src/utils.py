@@ -13,7 +13,9 @@ STATIC_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__fil
 
 # Parameters
 SCISSORS_PATH = os.path.join(STATIC_PATH, 'img', 'scissors.png')
-WEB = 'www.godigital.menu'
+HEADER = 'Scan the QR code to see our menu'
+FOOTER = 'Powered by godigital.menu'
+
 
 
 def create_QR(url, image_filename):
@@ -59,22 +61,44 @@ def create_PDF(document_name, document_title, image_filename):
     pdf.drawInlineImage(image_filename, 0, height * 2 / 3, height / 3, height / 3)
     pdf.drawInlineImage(image_filename, height / 2.75, height * 2 / 3, height / 3, height / 3)
 
-    # Draw text
-    # Fonts
-    # print('Available fonts: {}'.format(pdf.getAvailableFonts()))
+
     # Set font
-    pdf.setFont('Helvetica-Bold', 18)
-    # Draw blue text
-    pdf.setFillColor(colors.blue)
+    pdf.setFont('Helvetica-Bold', 16)
+
+    # Text color
+    pdf.setFillColor(colors.black)
+
+    # Headers
     # Top ones
-    pdf.drawCentredString(height / 1.9, width / 1.025, WEB)
-    pdf.drawCentredString(height / 6.2, width / 1.025, WEB)
+    pdf.drawCentredString(height / 1.9, width / 0.73, HEADER)
+    pdf.drawCentredString(height / 5.5, width / 0.73, HEADER)
+
     # Middle ones
-    pdf.drawCentredString(height / 1.9, width / 2, WEB)
-    pdf.drawCentredString(height / 6.2, width / 2, WEB)
+    pdf.drawCentredString(height / 1.9, width / 1.12, HEADER)
+    pdf.drawCentredString(height / 5.5, width / 1.12, HEADER)
+    
     # Bottom ones
-    pdf.drawCentredString(height / 1.9, width / 32, WEB)
-    pdf.drawCentredString(height / 6.2, width / 32, WEB)
+    pdf.drawCentredString(height / 1.9, width / 2.35, HEADER)
+    pdf.drawCentredString(height / 5.5, width / 2.35, HEADER)
+
+    # Set font
+    pdf.setFont('Helvetica-Bold', 10)
+
+    # Text color
+    pdf.setFillColor(colors.grey)
+
+    # Footers
+    # Top ones
+    pdf.drawCentredString(height / 1.9, width / 1.025, FOOTER)
+    pdf.drawCentredString(height / 6.2, width / 1.025, FOOTER)
+
+    # Middle ones
+    pdf.drawCentredString(height / 1.9, width / 2, FOOTER)
+    pdf.drawCentredString(height / 6.2, width / 2, FOOTER)
+
+    # Bottom ones
+    pdf.drawCentredString(height / 1.9, width / 32, FOOTER)
+    pdf.drawCentredString(height / 6.2, width / 32, FOOTER)
 
     # Draw Lines
     pdf.setDash(6, 3)
