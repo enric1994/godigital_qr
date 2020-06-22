@@ -41,7 +41,7 @@ def create_QR(url, image_filename):
     image.save(image_filename)
 
 
-def create_PDF(document_name, document_title, image_filename):
+def create_PDF_multi8(document_name, document_title, image_filename):
     """ 
     Create PDF with QR Code 
     https://realpython.com/creating-modifying-pdf/#creating-a-pdf-file-from-scratch
@@ -110,6 +110,42 @@ def create_PDF(document_name, document_title, image_filename):
     SCISSORS_SIZE = 20
     pdf.drawImage(SCISSORS_PATH, 0, height / 3 - SCISSORS_SIZE / 1.5, SCISSORS_SIZE, SCISSORS_SIZE, mask='auto')
     pdf.drawImage(SCISSORS_PATH, 0, height * 2 / 3 - SCISSORS_SIZE / 1.5, SCISSORS_SIZE, SCISSORS_SIZE, mask='auto')
+
+    # Save PDF!
+    pdf.save()
+
+def create_PDF_large(document_name, document_title, image_filename):
+    """ 
+    Create PDF with QR Code 
+    https://realpython.com/creating-modifying-pdf/#creating-a-pdf-file-from-scratch
+    https://www.reportlab.com/docs/reportlab-userguide.pdf
+    """
+
+    # Create document 
+    pdf = canvas.Canvas(document_name, pagesize=A4)
+    width, height = A4
+    pdf.setTitle(document_title)
+
+    # Draw QRs
+    pdf.drawInlineImage(image_filename, height/10, width/2, height / 2, height / 2)
+
+    # Set font
+    pdf.setFont('Helvetica-Bold', 32)
+
+    # Text color
+    pdf.setFillColor(colors.black)
+
+    # Header
+    pdf.drawCentredString(height / 2.9, width / 0.8, HEADER)
+    
+    # Set font
+    pdf.setFont('Helvetica-Bold', 16)
+
+    # Text color
+    pdf.setFillColor(colors.grey)
+
+    # Footers
+    pdf.drawCentredString(height / 2.7, width / 25, FOOTER)
 
     # Save PDF!
     pdf.save()
