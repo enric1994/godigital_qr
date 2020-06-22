@@ -61,7 +61,6 @@ def create_PDF_multi8(document_name, document_title, image_filename):
     pdf.drawInlineImage(image_filename, 0, height * 2 / 3, height / 3, height / 3)
     pdf.drawInlineImage(image_filename, height / 2.75, height * 2 / 3, height / 3, height / 3)
 
-
     # Set font
     pdf.setFont('Helvetica-Bold', 16)
 
@@ -126,8 +125,17 @@ def create_PDF_large(document_name, document_title, image_filename):
     width, height = A4
     pdf.setTitle(document_title)
 
+    # Background
+    pdf.setFillColor(colors.green)
+    pdf.rect(0, 0, width, height, fill=1)
+
+    # Circle
+    pdf.setFillColor(colors.white)
+    radious = 250
+    pdf.circle(width / 2, height / 1.75, radious, stroke=0, fill=1)
+
     # Draw QRs
-    pdf.drawInlineImage(image_filename, height/10, width/2, height / 2, height / 2)
+    pdf.drawInlineImage(image_filename, width / 4.5, height / 2.75, height / 2.5, height / 2.5)
 
     # Set font
     pdf.setFont('Helvetica-Bold', 32)

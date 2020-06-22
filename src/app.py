@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = 'this is my secret key!'
 
 # Static path
 STATIC_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "static"))
-OUTPUT_PATH = "/data/outputs/"
+OUTPUT_PATH = "/outputs/"
 
 
 @app.route('/qr', methods=['GET', 'POST'])
