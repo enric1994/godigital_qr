@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # Static path
 STATIC_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "static"))
-OUTPUT_PATH = "/outputs/"
+OUTPUT_PATH = "/output/"
 
 
 @app.route('/qr', methods=['GET', 'POST'])

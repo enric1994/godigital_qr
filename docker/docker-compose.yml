@@ -17,7 +17,7 @@ services:
       - LANG=C.UTF-8
     volumes:
       - ../:/data
-      - ../outputs/:/outputs
+      - ../output/:/output/
     ports:
       - "5000:5000"
     # command: flask run
