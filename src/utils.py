@@ -105,10 +105,91 @@ def create_PDF_multi8(document_name, document_title, image_filename):
     pdf.line(0, height * 2 / 3, width, height * 2 / 3) # horizontal
     pdf.line(width / 2, 0, width / 2, height) # vertical
 
-    # Draw scissors on the horizontal lines
-    SCISSORS_SIZE = 20
-    pdf.drawImage(SCISSORS_PATH, 0, height / 3 - SCISSORS_SIZE / 1.5, SCISSORS_SIZE, SCISSORS_SIZE, mask='auto')
-    pdf.drawImage(SCISSORS_PATH, 0, height * 2 / 3 - SCISSORS_SIZE / 1.5, SCISSORS_SIZE, SCISSORS_SIZE, mask='auto')
+    # Save PDF!
+    pdf.save()
+
+def create_PDF_small(document_name, document_title, image_filename):
+    """ 
+    Create PDF with QR Code 
+    https://realpython.com/creating-modifying-pdf/#creating-a-pdf-file-from-scratch
+    https://www.reportlab.com/docs/reportlab-userguide.pdf
+    """
+
+    # Create document 
+    pdf = canvas.Canvas(document_name, pagesize=A4)
+    width, height = A4
+    print(height)
+    pdf.setTitle(document_title)
+
+    # Draw QRs
+    pdf.drawInlineImage(image_filename, 0, 0, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 200, 0, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 400, 0, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 0, 200, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 200, 200, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 400, 200, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 0, 400, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 200, 400, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 400, 400, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 0, 600, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 200, 600, height / 4, height / 4)
+    pdf.drawInlineImage(image_filename, 400, 600, height / 4, height / 4)
+    
+
+    # Set font
+    pdf.setFont('Helvetica-Bold', 10)
+
+    # Text color
+    pdf.setFillColor(colors.black)
+
+    # Headers
+    # Top ones
+    pdf.drawCentredString(105, 190, HEADER)
+    pdf.drawCentredString(305, 190, HEADER)
+    pdf.drawCentredString(505, 190, HEADER)
+    pdf.drawCentredString(105, 390, HEADER)
+    pdf.drawCentredString(305, 390, HEADER)
+    pdf.drawCentredString(505, 390, HEADER)
+    pdf.drawCentredString(105, 590, HEADER)
+    pdf.drawCentredString(305, 590, HEADER)
+    pdf.drawCentredString(505, 590, HEADER)
+    pdf.drawCentredString(105, 790, HEADER)
+    pdf.drawCentredString(305, 790, HEADER)
+    pdf.drawCentredString(505, 790, HEADER)
+
+    # Set font
+    pdf.setFont('Helvetica-Bold', 10)
+
+    # Text color
+    pdf.setFillColor(colors.grey)
+
+    # Footers
+    pdf.drawCentredString(110,15, FOOTER)
+    pdf.drawCentredString(310,15, FOOTER)
+    pdf.drawCentredString(510,15, FOOTER)
+
+    pdf.drawCentredString(110,215, FOOTER)
+    pdf.drawCentredString(310,215, FOOTER)
+    pdf.drawCentredString(510,215, FOOTER)
+
+    pdf.drawCentredString(110,415, FOOTER)
+    pdf.drawCentredString(310,415, FOOTER)
+    pdf.drawCentredString(510,415, FOOTER)
+
+    pdf.drawCentredString(110,615, FOOTER)
+    pdf.drawCentredString(310,615, FOOTER)
+    pdf.drawCentredString(510,615, FOOTER)
+
+
+    # Draw Lines
+    pdf.setDash(6, 3)
+    pdf.line(0, 205, 600, 205) # horizontal
+    pdf.line(0, 405, 600, 405) # horizontal
+    pdf.line(0, 605, 600, 605) # horizontal
+
+    pdf.line(205, 0, 205, 1000) # vertical
+    pdf.line(405, 0, 405, 1000) # vertical
+    pdf.line(605, 0, 605, 1000) # vertical
 
     # Save PDF!
     pdf.save()
