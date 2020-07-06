@@ -13,9 +13,9 @@ STATIC_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__fil
 
 # Parameters
 SCISSORS_PATH = os.path.join(STATIC_PATH, 'img', 'scissors.png')
+HEADER_SHORT = 'Scan me!'
 HEADER = 'Scan the QR code to see our menu'
 FOOTER = 'Powered by godigital.menu'
-
 
 
 def create_QR(url, image_filename):
@@ -108,6 +108,7 @@ def create_PDF_multi8(document_name, document_title, image_filename):
     # Save PDF!
     pdf.save()
 
+
 def create_PDF_small(document_name, document_title, image_filename):
     """ 
     Create PDF with QR Code 
@@ -118,7 +119,6 @@ def create_PDF_small(document_name, document_title, image_filename):
     # Create document 
     pdf = canvas.Canvas(document_name, pagesize=A4)
     width, height = A4
-    print(height)
     pdf.setTitle(document_title)
 
     # Draw QRs
@@ -134,7 +134,6 @@ def create_PDF_small(document_name, document_title, image_filename):
     pdf.drawInlineImage(image_filename, 0, 600, height / 4, height / 4)
     pdf.drawInlineImage(image_filename, 200, 600, height / 4, height / 4)
     pdf.drawInlineImage(image_filename, 400, 600, height / 4, height / 4)
-    
 
     # Set font
     pdf.setFont('Helvetica-Bold', 10)
@@ -144,42 +143,41 @@ def create_PDF_small(document_name, document_title, image_filename):
 
     # Headers
     # Top ones
-    pdf.drawCentredString(105, 190, HEADER)
-    pdf.drawCentredString(305, 190, HEADER)
-    pdf.drawCentredString(505, 190, HEADER)
-    pdf.drawCentredString(105, 390, HEADER)
-    pdf.drawCentredString(305, 390, HEADER)
-    pdf.drawCentredString(505, 390, HEADER)
-    pdf.drawCentredString(105, 590, HEADER)
-    pdf.drawCentredString(305, 590, HEADER)
-    pdf.drawCentredString(505, 590, HEADER)
-    pdf.drawCentredString(105, 790, HEADER)
-    pdf.drawCentredString(305, 790, HEADER)
-    pdf.drawCentredString(505, 790, HEADER)
+    pdf.drawCentredString(105, 190, HEADER_SHORT)
+    pdf.drawCentredString(305, 190, HEADER_SHORT)
+    pdf.drawCentredString(505, 190, HEADER_SHORT)
+    pdf.drawCentredString(105, 390, HEADER_SHORT)
+    pdf.drawCentredString(305, 390, HEADER_SHORT)
+    pdf.drawCentredString(505, 390, HEADER_SHORT)
+    pdf.drawCentredString(105, 590, HEADER_SHORT)
+    pdf.drawCentredString(305, 590, HEADER_SHORT)
+    pdf.drawCentredString(505, 590, HEADER_SHORT)
+    pdf.drawCentredString(105, 790, HEADER_SHORT)
+    pdf.drawCentredString(305, 790, HEADER_SHORT)
+    pdf.drawCentredString(505, 790, HEADER_SHORT)
 
     # Set font
-    pdf.setFont('Helvetica-Bold', 10)
+    pdf.setFont('Helvetica-Bold', 8)
 
     # Text color
     pdf.setFillColor(colors.grey)
 
     # Footers
-    pdf.drawCentredString(110,15, FOOTER)
-    pdf.drawCentredString(310,15, FOOTER)
-    pdf.drawCentredString(510,15, FOOTER)
+    pdf.drawCentredString(110, 15, FOOTER)
+    pdf.drawCentredString(310, 15, FOOTER)
+    pdf.drawCentredString(510, 15, FOOTER)
 
-    pdf.drawCentredString(110,215, FOOTER)
-    pdf.drawCentredString(310,215, FOOTER)
-    pdf.drawCentredString(510,215, FOOTER)
+    pdf.drawCentredString(110, 215, FOOTER)
+    pdf.drawCentredString(310, 215, FOOTER)
+    pdf.drawCentredString(510, 215, FOOTER)
 
-    pdf.drawCentredString(110,415, FOOTER)
-    pdf.drawCentredString(310,415, FOOTER)
-    pdf.drawCentredString(510,415, FOOTER)
+    pdf.drawCentredString(110, 415, FOOTER)
+    pdf.drawCentredString(310, 415, FOOTER)
+    pdf.drawCentredString(510, 415, FOOTER)
 
-    pdf.drawCentredString(110,615, FOOTER)
-    pdf.drawCentredString(310,615, FOOTER)
-    pdf.drawCentredString(510,615, FOOTER)
-
+    pdf.drawCentredString(110, 615, FOOTER)
+    pdf.drawCentredString(310, 615, FOOTER)
+    pdf.drawCentredString(510, 615, FOOTER)
 
     # Draw Lines
     pdf.setDash(6, 3)
@@ -193,6 +191,7 @@ def create_PDF_small(document_name, document_title, image_filename):
 
     # Save PDF!
     pdf.save()
+
 
 def create_PDF_large(document_name, document_title, image_filename):
     """ 

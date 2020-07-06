@@ -3,7 +3,7 @@ import json
 
 headers = {
     'Content-Type': 'text/plain',
-    'url': 'https://www.google.com/',
+    'url': 'https://contactless-menu.digital/0.html',
     'output_id': '12345'
 }
 url = "http://localhost:5000/qr"
