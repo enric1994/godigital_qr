@@ -154,15 +154,15 @@ def create_PDF_medium(document_name, document_title, image_filename):
     # Headers
     # Top ones
     pdf.drawCentredString(height / 1.9, width / 0.73, HEADER)
-    pdf.drawCentredString(height / 5.5, width / 0.73, HEADER)
+    pdf.drawCentredString(height / 5.9, width / 0.73, HEADER)
 
     # Middle ones
     pdf.drawCentredString(height / 1.9, width / 1.115, HEADER)
-    pdf.drawCentredString(height / 5.5, width / 1.115, HEADER)
+    pdf.drawCentredString(height / 5.9, width / 1.115, HEADER)
     
     # Bottom ones
     pdf.drawCentredString(height / 1.9, width / 2.35, HEADER)
-    pdf.drawCentredString(height / 5.5, width / 2.35, HEADER)
+    pdf.drawCentredString(height / 5.9, width / 2.35, HEADER)
 
     # Set font
     pdf.setFont('Helvetica-Bold', 10)
