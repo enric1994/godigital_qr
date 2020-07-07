@@ -2,7 +2,7 @@
 import os
 import io
 import sys
-from utils import create_QR, create_PDF_multi8, create_PDF_large, create_PDF_small
+from utils import create_QR, create_PDF_medium, create_PDF_large, create_PDF_small
 from flask import Flask, jsonify, request
 
 # APP
@@ -20,7 +20,6 @@ def generate_qr():
     try:
 
         # Read Request Data
-
         output_id = request.headers['output_id']
         restaurant_name = 'GoDigital Menu'
         url = request.headers['url']
@@ -30,13 +29,13 @@ def generate_qr():
         create_QR(url, QR_filename)
 
         # Create PDF
-        multi8_name = os.path.join(OUTPUT_PATH, 'QR_medium_{}.pdf'.format(output_id))
-        large_name = os.path.join(OUTPUT_PATH, 'QR_large_{}.pdf'.format(output_id))
         small_name = os.path.join(OUTPUT_PATH, 'QR_small_{}.pdf'.format(output_id))
+        medium_name = os.path.join(OUTPUT_PATH, 'QR_medium_{}.pdf'.format(output_id))
+        large_name = os.path.join(OUTPUT_PATH, 'QR_large_{}.pdf'.format(output_id))
         document_title = restaurant_name
-        create_PDF_multi8(multi8_name, document_title, QR_filename)
-        create_PDF_large(large_name, document_title, QR_filename)
         create_PDF_small(small_name, document_title, QR_filename)
+        create_PDF_medium(medium_name, document_title, QR_filename)
+        create_PDF_large(large_name, document_title, QR_filename)
 
         # Hurray!
         return '200'
