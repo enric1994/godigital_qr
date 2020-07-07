@@ -52,7 +52,6 @@ def create_PDF_small(document_name, document_title, image_filename):
     # Create document 
     pdf = canvas.Canvas(document_name, pagesize=A4)
     width, height = A4
-    print(width, height)
     pdf.setTitle(document_title)
 
     # Draw QRs
@@ -216,16 +215,11 @@ def create_PDF_large(document_name, document_title, image_filename):
     pdf.setTitle(document_title)
 
     # Background
-    pdf.setFillColorRGB(0.8,0.8,0.8)
-    pdf.rect(0, 0, width, height, fill=1)
+    pdf.setFillColorRGB(0.8, 0.8, 0.8)
+    pdf.rect(25, 25, width - 50, height - 50, fill = 0)
 
-    # Circle
-    pdf.setFillColor(colors.white)
-    radious = 250
-    pdf.circle(width / 2, height / 1.75, radious, stroke=0, fill=1)
-
-    # Draw QRs
-    pdf.drawInlineImage(image_filename, width / 4.5, height / 2.75, height / 2.5, height / 2.5)
+    # Draw QR
+    pdf.drawInlineImage(image_filename, width / 4.5, height / 2.25, height / 2.5, height / 2.5)
 
     # Set font
     pdf.setFont('Helvetica-Bold', 32)
@@ -234,16 +228,17 @@ def create_PDF_large(document_name, document_title, image_filename):
     pdf.setFillColor(colors.black)
 
     # Header
-    pdf.drawCentredString(height / 2.9, width / 0.8, HEADER)
+    pdf.drawCentredString(width / 2, 300, 'SCAN HERE FOR')
+    pdf.drawCentredString(width / 2, 260, 'CONTACTLESS MENU')
     
     # Set font
     pdf.setFont('Helvetica-Bold', 16)
 
     # Text color
-    pdf.setFillColor(colors.black)
+    pdf.setFillColor(colors.grey)
 
     # Footers
-    pdf.drawCentredString(height / 2.7, width / 25, FOOTER)
+    pdf.drawCentredString(width / 2, 50, FOOTER)
 
     # Save PDF!
     pdf.save()
