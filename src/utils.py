@@ -16,6 +16,7 @@ SCISSORS_PATH = os.path.join(STATIC_PATH, 'img', 'scissors.png')
 HEADER_SHORT = 'Scan me!'
 HEADER = 'Scan the QR code to see our menu'
 FOOTER = 'Powered by godigital.menu'
+PRINT = 'Print these QR codes & put them on tables'
 
 
 def create_QR(url, image_filename):
@@ -51,6 +52,7 @@ def create_PDF_small(document_name, document_title, image_filename):
     # Create document 
     pdf = canvas.Canvas(document_name, pagesize=A4)
     width, height = A4
+    print(width, height)
     pdf.setTitle(document_title)
 
     # Draw QRs
@@ -68,12 +70,18 @@ def create_PDF_small(document_name, document_title, image_filename):
     pdf.drawInlineImage(image_filename, 400, 600, height / 4, height / 4)
 
     # Set font
-    pdf.setFont('Helvetica-Bold', 10)
+    pdf.setFont('Helvetica-Bold', 15)
 
     # Text color
     pdf.setFillColor(colors.black)
 
-    # Headers
+    # Main header
+    pdf.drawCentredString(width / 2, 820, PRINT)
+
+    # Set font
+    pdf.setFont('Helvetica-Bold', 10)
+
+    # QR Headers
     # Top ones
     pdf.drawCentredString(105, 190, HEADER_SHORT)
     pdf.drawCentredString(305, 190, HEADER_SHORT)
@@ -94,7 +102,7 @@ def create_PDF_small(document_name, document_title, image_filename):
     # Text color
     pdf.setFillColor(colors.grey)
 
-    # Footers
+    # QR Footers
     pdf.drawCentredString(110, 15, FOOTER)
     pdf.drawCentredString(310, 15, FOOTER)
     pdf.drawCentredString(510, 15, FOOTER)
@@ -113,13 +121,15 @@ def create_PDF_small(document_name, document_title, image_filename):
 
     # Draw Lines
     pdf.setDash(6, 3)
+
     pdf.line(0, 205, 600, 205) # horizontal
     pdf.line(0, 405, 600, 405) # horizontal
     pdf.line(0, 605, 600, 605) # horizontal
+    pdf.line(0, 805, 600, 805) # horizontal
 
-    pdf.line(205, 0, 205, 1000) # vertical
-    pdf.line(405, 0, 405, 1000) # vertical
-    pdf.line(605, 0, 605, 1000) # vertical
+    pdf.line(205, 0, 205, 805) # vertical
+    pdf.line(405, 0, 405, 805) # vertical
+    pdf.line(605, 0, 605, 805) # vertical
 
     # Save PDF!
     pdf.save()
